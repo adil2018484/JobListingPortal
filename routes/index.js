@@ -45,3 +45,24 @@ res.json(job);
 )
 .catch((err) => next(err));
 });
+
+
+//PUT Operations
+router.put("/updatejob/:id/:name/:des/:key/:loc", function (req, res, next) {
+Job.findOneAndUpdate(
+{ _id: req.params.id },
+{
+name: req.params.name,
+description: req.params.des,
+keyword: req.params.key,
+location: req.params.loc,
+},
+function (error, results) {
+if (error) {
+return next(error);
+}
+
+res.json(results);
+}
+);
+});
