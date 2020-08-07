@@ -28,3 +28,20 @@ return next(error);
 res.json(results);
 });
 });
+
+
+
+//POST Operations
+router.post("/addjob", function (req, res, next) {
+Job.create(req.body)
+.then(
+(job) => {
+console.log("Student has been Added ", job);
+res.statusCode = 200;
+res.setHeader("Content-Type", "application/json");
+res.json(job);
+},
+(err) => next(err)
+)
+.catch((err) => next(err));
+});
